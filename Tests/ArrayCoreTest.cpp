@@ -69,8 +69,16 @@ TEST(ArrayCore, showChart) {
   EXPECT_EQ(result, true);
 }
 
+TEST(ArrayCore, readAndShowMatrixFromFile) {
+  EXPECT_EQ(davis::isPlotlyScriptExists(), true);
+  vector<vector<double>> values;
+  bool readRes = davis::readMatrix(values, "./data/2023_07_19-12_59_31_379_Baumer2_text.csv", ';');
+  EXPECT_EQ(readRes, true);
+  bool result = davis::show(values, "readAndShowMatrixFromFile");
+  EXPECT_EQ(result, true);
+}
+
 int main(int argc, char* argv[]) {
-  //std::cout<< std::endl << davis::deleteFolder(davis::saveFolderName) << std::endl;
   ::testing::InitGoogleTest(&argc, argv);
   std::ignore = RUN_ALL_TESTS();
   return 0;
